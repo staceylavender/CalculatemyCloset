@@ -1,6 +1,6 @@
-//This is the second page for users to design their database
-//Here users will select the values for their database
-//Values selected here will appear in drop down select lists on organize3 page. 
+<!--This is the second page for users to design their database-->
+<!--Here users will select the values for their database-->
+<!--Values selected here will appear in drop down select lists on organize3 page.--> 
 
 <h1 style="font-family:Futura; color:coral">Design Your Database</h1>
 <p style="font-family:Futura">Below select all fields you would like to use in your Database</p>
