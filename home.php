@@ -1,3 +1,4 @@
+<!--Home page-->
 <head>
     <title>Calculate My Closet</title>
 <head>
