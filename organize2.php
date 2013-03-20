@@ -8,6 +8,7 @@
     <h1 style="font-family:Futura; color:coral">Calculate My Closet</h1>
     <h2 style="font-family:Futura">Organize Your Closet</h2>
     
+    <!-- CSS STUFF -->
     <style type="text/css">
     #wrap {
         width:800px;
@@ -28,9 +29,10 @@
         
     .buttonClicked {  /* class for clicked buttons*/
         background:coral;
-       }
-         
+       } 
     </style>
+    <!-- END OF CSS STUFF -->
+
 
     <div id="wrap">
         <div class="left_col">
