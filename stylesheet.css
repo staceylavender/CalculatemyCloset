@@ -1,12 +1,13 @@
 .button{
-    height: 60px;
-   	width: 100px;
     border-radius: 5px;
-    color: #69D2E7;
+    background-color: #69D2E7;
     text-align: center;
     font-family: Futura, Arial, Sans-Serif;
     opacity: 1;
     display:inline;
-    padding: 0 1em 0 0;
+    border-color: #69D2E7;
+    border-width:10px;
+    border-style:solid;
+    margin: 20px;
 
 }
