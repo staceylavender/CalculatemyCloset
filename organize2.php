@@ -1,30 +1,18 @@
 <!--This is the second page for users to design their database-->
 <!--Here users will select the values for their database-->
 <!--Values selected here will appear in drop down select lists on organize3 page.--> 
-<?php session_start(); ?>
-<head>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js">
-    </script>
-    <title>Calculate My Closet</title>
-<head>
-<body>
-    <h1 style="font-family:Futura; color:coral">Calculate My Closet</h1>
-    <h2 style="font-family:Futura">Organize Your Closet</h2>
+<?php include('header.php');?> 
+<?php session_start();
+ECHO ("TEST"); 
+print_r($_POST);?>
 
-    <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            $(this).toggleClass("clicked");
-        });
-    });
-    </script>
+    <h2 style="font-family:Futura; color:coral">Organize Your Closet</h2>
     
     <!-- CSS STUFF -->
     <style type="text/css">
-    #wrap {
-        width:800px;
-        margin:0 auto; 
-        }
+    #createbutton{
+        background-color:coral;
+    }
         
     .left_col {
         float:left;
@@ -45,11 +33,13 @@
     </style>
     <!-- END OF CSS STUFF -->
 
-    <div id="wrap">
+    <?php if($_POST['type'] == 'ON') { ?>  <!-- If type 'value' is ON then POST-->
         <div class="left_col">
             <p style="font-family:Futura">Types of Clothing</p>
             <p>Select the Types of clothes in your closet</p>
-            <button id="clicked" name="type">Jeans</button>
+             <?php if($_POST['type'] == 'ON') { ?> 
+                <button id="clicked" name="type">Jeans</button>
+            <?php } ?>
             <button id="clicked" name="type">Pants</button>
             <button id="clicked" name="type">Shorts</button>
             <button id="clicked" name="type">Skirt</button>
@@ -63,27 +53,9 @@
             <button id="clicked" name="type">Athletic Bottom</button>
         </div>
     </div>
+    <?php } ?>
 
-    <div id="wrap">
-        <div class="right_col">
-            <p style="font-family:Futura">Price Range</p>
-            <p>Select Price Ranges</p>
-            <button id="clicked" name="price">$10 or less</button>
-            <button id="clicked" name="price">$11-$15</button>
-            <button id="clicked" name="price">$16-$20</button>
-            <button id="clicked" name="price">$21-$30</button>
-            <button id="clicked" name="price">$31-$40</button>
-            <button id="clicked" name="price">$41-$50</button>
-            <button id="clicked" name="price">$51-$60</button>
-            <button id="clicked" name="price">$61-$70</button>
-            <button id="clicked" name="price">$71-$80</button>
-            <button id="clicked" name="price">$81-$100</button>
-            <button id="clicked" name="price">$100-$150</button>
-            <button id="clicked" name="price">$150-$200</button>
-        </div
-    </div>
-
-    <div id="wrap">
+    <?php if($_POST['color'] == 'ON') { ?>
         <div class="left_col">
             <p style="font-family:Futura">Color</p>
             <p>Select the colors in your closet</p>
@@ -103,9 +75,11 @@
             <button id="clicked" name="color">Off-White</button>
         </div>
     </div>
-    
-    <div id="wrap">
-        <div class="right_col">
+    <?php } ?>
+
+
+    <?php if($_POST['pattern'] == 'ON') { ?>
+        <div class="left_col">
             <p style="font-family:Futura">Patterns</p>
             <p>Select the patterns in your closet</p>
             <button id="clicked" name="pattern">Striped</button>
@@ -123,8 +97,9 @@
             <button id="clicked" name="pattern">Tie-Dye</button>
         </div>
     </div>
-    
-    <div id="wrap">
+    <?php } ?>
+
+    <?php if($_POST['size'] == 'ON') { ?>
         <div class="left_col">
             <p style="font-family:Futura">Clothes Size</p>
             <p>Select the sizes in your closet</p>
@@ -151,23 +126,9 @@
             <button id="clicked" name="size">24</button>
         </div>
     </div>
-    
-    <div id="wrap">
-        <div class="right_col">
-            <p style="font-family:Futura">Pants Size</p>
-            <p>Select the sizes of your jeans and pants in your closet</p>
-            <button id="clicked" name="pant size">26</button>
-            <button id="clicked" name="pant size">27</button>
-            <button id="clicked" name="pant size">28</button>
-            <button id="clicked" name="pant size">29</button>
-            <button id="clicked" name="pant size">30</button>
-            <button id="clicked" name="pant size">31</button>
-            <button id="clicked" name="pant size">32</button>
-            <button id="clicked" name="pant size">33</button>
-        </div>
-    </div>
-    
-    <div id="wrap">
+    <?php } ?>
+
+    <?php if($_POST['fit'] == 'ON') { ?>
         <div class="left_col">
             <p style="font-family:Futura">Fit</p>
             <p>Select Fit</p>
@@ -181,12 +142,62 @@
             <button id="clicked" name="fit">Shift</button>
         </div>
     </div>
+     <?php } ?>
+
+    <?php if($_POST['price'] == 'ON') { ?>
+        <div class="left_col">
+            <p style="font-family:Futura">Price Range</p>
+            <p>Select Price Ranges</p>
+            <button id="clicked" name="price">$10 or less</button>
+            <button id="clicked" name="price">$11-$15</button>
+            <button id="clicked" name="price">$16-$20</button>
+            <button id="clicked" name="price">$21-$30</button>
+            <button id="clicked" name="price">$31-$40</button>
+            <button id="clicked" name="price">$41-$50</button>
+            <button id="clicked" name="price">$51-$60</button>
+            <button id="clicked" name="price">$61-$70</button>
+            <button id="clicked" name="price">$71-$80</button>
+            <button id="clicked" name="price">$81-$100</button>
+            <button id="clicked" name="price">$100-$150</button>
+            <button id="clicked" name="price">$150-$200</button>
+        </div
+    </div>
+    <?php } ?>
     
-    <div id="wrap">
-        <div class="right_col">
-            <input type="button" value="Create Database!" onclick="location.href='organize3.php'; return false">
+    
+    <?php if($_POST['rating'] == 'ON') { ?>
+        <div class="left_col">
+            <p style="font-family:Futura">Rating</p>
+            <p>How would you like to rate your items?</p>
+            <button id="clicked" name="rating">1</button>
+            <button id="clicked" name="rating">2</button>
+            <button id="clicked" name="rating">3</button>
+            <button id="clicked" name="rating">4</button>
+            <button id="clicked" name="rating">5</button>
+            <button id="clicked" name="rating">6</button>
+            <button id="clicked" name="rating">7</button>
+            <button id="clicked" name="rating">8</button>
+            <button id="clicked" name="rating">9</button>
+            <button id="clicked" name="rating">10</button>
         </div>
     </div>
+    <?php } ?>
+
+    
+    <div>
+        <div class="right_col">
+            <br>
+            <input id="createbutton" type="button" value="Create Database!" onclick="location.href='organize3.php'; return false">
+        </div>
+    </div>
+    
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $(this).toggleClass("clicked");
+        });
+    });
+    </script>
     
     <!--<script> function changeColor(button) //Javascript function to change background of button once it's been clicked
     {
