@@ -15,7 +15,7 @@ if ( isset($_POST['firstname']) && isset($_POST['lastname'])
               VALUES ('$lastname', '$firstname', '$email', '$password')";
 	// echo "<pre>\n$sql\n</pre>\n";
 	mysql_query($sql);
-	$sql2 = "CREATE TABLE $tablename(id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY, type VARCHAR(30), color VARCHAR(30), pattern VARCHAR(30), size VARCHAR(10), fit VARCHAR(30), price VARCHAR(30))";
+	$sql2 = "CREATE TABLE $tablename(id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY, name VARCHAR(100), type VARCHAR(30), color VARCHAR(30), pattern VARCHAR(30), size VARCHAR(10), fit VARCHAR(30), price VARCHAR(30), worn CHAR(6))";
 	mysql_query($sql2);
 	$_SESSION['success'] = 'Record Added';
     header( 'Location: organize1.php' );
