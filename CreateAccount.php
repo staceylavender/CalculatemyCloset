@@ -1,5 +1,3 @@
-<!--Acoount Creation page-->
-
 <?php
 require_once "login.php";
 session_start();
@@ -35,7 +33,7 @@ if ( isset($_POST['firstname']) && isset($_POST['lastname'])
 	<input type="text" name="firstname"></p>
 	<p>Last Name:
 	<input type="text" name="lastname"></p>
-	<p>Email address:
+	<p>Email Address:
 	<input type="text" name="email"></p>
 	<p>Password:
 	<input type="text" name="password"></p>
