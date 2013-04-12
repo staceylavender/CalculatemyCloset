@@ -1,6 +1,7 @@
 <!--First page for users to design their database-->
 <!--Here users will 'Turn On' their desired fields-->
-<?php include('header.php');?> 
+<?php include('header.php');
+include 'functions.php';?>
     <h2 style="font-family:Futura; color:coral">Create Your Closet</h2>
     <p style="font-family:Futura; font-size:15px">Select the categories you want to use in your closet</p> 
 

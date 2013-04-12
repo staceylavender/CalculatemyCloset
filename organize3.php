@@ -2,17 +2,26 @@
 <!--This page will feature select lists of items from organize2.php-->
 <?php include('header.php');?> 
 <?php session_start();
+include 'functions.php';
 ECHO ("TEST"); 
 print_r($_POST);
 
-if ( isset($_POST['ID']) && isset ($_POST['type']) && ($_POST['color']) && ($_POST['pattern']) && ($_POST['size']) && ($_POST['size']) && ($_POST['fit']) && ($_POST['price']))
-$id = mysql_real_escape_string($_POST['id']);
-$type = mysql_real_escape_string($_POST['type']);
-$color = mysql_real_escape_string($_POST['color']);
-$pattern = mysql_real_escape_string($_POST['pattern']);
-$size = mysql_real_escape_string($_POST['size']);
-$fit = mysql_real_escape_string($_POST['fit']);
-$price = mysql_real_escape_string($_POST['price']);
+if ( isset($_POST['type']) && isset($_POST['color'])  && isset($_POST['pattern'])  && isset($_POST['size']) && isset($_POST['fit']) 
+     && isset($_POST['price'])) {
+
+		$type = mysql_real_escape_string($_POST['type']);
+		$color = mysql_real_escape_string($_POST['color']);
+		$pattern = mysql_real_escape_string($_POST['pattern']);
+		$size = mysql_real_escape_string($_POST['size']);
+		$fit = mysql_real_escape_string($_POST['fit']);
+		$price = mysql_real_escape_string($_POST['price']);
+		$sql = "INSERT INTO jeffwarner (type, color, pattern, size, fit, price) 
+				VALUES ('$type', '$color', '$pattern', '$size', '$fit', '$price')";
+		mysql_query($sql); 
+		$_SESSION['success'] = 'Record Added';
+		header( 'Location: organize3.php' ) ;
+		return;
+        }
 
 $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price) 
               VALUES ('$id', '$type', '$color', '$pattern', '$size', '$fit', '$price')";
@@ -156,25 +165,20 @@ echo '<table border="1">'."\n";
 $result = mysql_query("SELECT id, type, color, pattern, size, fit, price FROM users");
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
-    echo(htmlentities($row[0]));
-    echo("</td><td>");
     echo(htmlentities($row[1]));
     echo("</td><td>");
     echo(htmlentities($row[2]));
-    echo("</td><td>\n");
+    echo("</td><td>");
     echo(htmlentities($row[3]));
     echo("</td><td>\n");
-    echo(htmlentities($row[4]));
+	echo(htmlentities($row[4]));
     echo("</td><td>\n");
-    echo(htmlentities($row[5]));
+	echo(htmlentities($row[5]));
     echo("</td><td>\n");
-    echo(htmlentities($row[6]));
+	echo(htmlentities($row[6]));
     echo("</td><td>\n");
-    echo('<form method="post"><input type="hidden" ');
-    echo('name="id" value="'.$row[7].'">'."\n");
-    echo('<a href="edittrack.php?id='.htmlentities($row[7]).'">Edit</a> / ');
-    echo('<input type="submit" value="Delete" name="delete">');
-    echo("\n</form>\n");
+    echo('<a href="edit.php?id='.htmlentities($row[0]).'">Edit</a> / ');
+    echo('<a href="delete.php?id='.htmlentities($row[0]).'">Delete</a>');
     echo("</td></tr>\n");
 }
 ?>

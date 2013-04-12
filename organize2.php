@@ -3,6 +3,7 @@
 <!--Values selected here will appear in drop down select lists on organize3 page.--> 
 <?php include('header.php');?> 
 <?php session_start();
+include 'functions.php';
 ECHO ("TEST"); 
 print_r($_POST);?>
 

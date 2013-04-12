@@ -1,6 +1,7 @@
 <?php
-require_once "login.php";
 session_start();
+include 'functions.php';
+
 if ( isset($_POST['firstname']) && isset($_POST['lastname']) 
      && isset($_POST['email'])&& isset($_POST['password'])) 
   {
@@ -8,7 +9,7 @@ if ( isset($_POST['firstname']) && isset($_POST['lastname'])
    $lastname = mysql_real_escape_string($_POST['lastname']);
    $email = mysql_real_escape_string($_POST['email']);
    $password = mysql_real_escape_string($_POST['password']);
-   $tablename = $firstname.$lastname;
+   $tablename = $email.'table';
    $sql = "INSERT INTO users (lastname, firstname, email, password) 
               VALUES ('$lastname', '$firstname', '$email', '$password')";
 	// echo "<pre>\n$sql\n</pre>\n";
