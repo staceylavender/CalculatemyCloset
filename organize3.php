@@ -1,8 +1,10 @@
 <!--This page will be for users to add items to their database-->
 <!--This page will feature select lists of items from organize2.php-->
-<?php include('header.php');?> 
-<?php session_start();
+<?php include('header.php');
+<session_start();
 include 'functions.php';
+<<<<<<< HEAD
+
 ECHO ("TEST"); 
 print_r($_POST);
 
@@ -25,21 +27,42 @@ if ( isset($_POST['type']) && isset($_POST['color'])  && isset($_POST['pattern']
 
 $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price) 
               VALUES ('$id', '$type', '$color', '$pattern', '$size', '$fit', '$price')";
+=======
+require_once "login.php"; //connect to database
+
+if ( isset($_POST['type']) ) {
+$id = mysql_real_escape_string($_POST['id']);
+$name = mysql_real_escape_string($_POST['name']);
+$type = mysql_real_escape_string($_POST['type']);
+$color = mysql_real_escape_string($_POST['color']);
+$pattern = mysql_real_escape_string($_POST['pattern']);
+$size = mysql_real_escape_string($_POST['size']);
+$fit = mysql_real_escape_string($_POST['fit']);
+$price = mysql_real_escape_string($_POST['price']);
+$worn = mysql_real_escape_string($_POST['worn']);
+
+$tablename= $_SESSION['tablename'];  //call tablename from session
+$sql = "INSERT INTO $tablename (id, name, type, color, pattern, size, fit, price, worn) 
+              VALUES ('$id', '$name', '$type', '$color', '$pattern', '$size', '$fit', '$price', '$worn')"; 
+   mysql_query($sql);
+   header("location: organize3.php");
+   return;
+}
+>>>>>>> e249e68808a8104a1e905e1573d7feb544766a8f
 
 ?>
 
 	<h2 style="font-family:Futura; color:coral">Build Your Database!</h2>
 	<h3 style="font-family:Futura; color:coral">Enter Your Items Here</h3>
 	<br>
-	<form>
-	<p>Item <input type="text" name="item" value=""/></p>
-
 	<style type="text/css">
     #enter{
         background-color:coral;
     }
 
     </style>
+<form method="post">
+	<p>Item Name <input type="text" name="name" value=""/></p>
 
 	<select name="type">
 		<option value="Type">Type</option>
@@ -53,13 +76,13 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
         <option value="Blouse">Blouse</option>
         <option value="Coat">Coat</option>
         <option value="Jacket">Jacket</option>
-        <option value="Athletic Top">Athletic Top</option>
-        <option value="Athletic Bottom">Athletic Bottom</option>
+        <option value="Athletic">Athletic</option>
 	</select>
 
 	<select name="color">
 		<option value="Color">Color</option>
         <option value="White">White</option>
+        <option value="Off-White">Off-White</option>
         <option value="Black">Black</option>
         <option value="Gray">Gray</option>
         <option value="Red">Red</option>
@@ -69,16 +92,12 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
         <option value="Blue">Blue</option>
         <option value="Purple">Purple</option>
         <option value="Brown">Brown</option>
-        <option value="Peach">Peach</option>
-        <option value="Mint">Mint</option>
-        <option value="Magenta">Magenta</option>
-        <option value="Off-White">Off-White</option>
+        <option value="Multi">Multi</option>
 	</select>
 
 	<select name="pattern">
 		<option value="Pattern">Pattern</option>
-        <option value="Multi">Multi</option>
-        <option value="Dots">Dots</option>
+        <option value="Dots">Polka dots</option>
         <option value="Paisley">Paisley</option>
         <option value="Argyle">Argyle</option>
         <option value="Checkered">Checkered</option>
@@ -89,6 +108,7 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
         <option value="Chevron/ZigZag">Chevron/ZigZag</option>
         <option value="Toile">Toile</option>
         <option value="Tie-Dye">Tie-Dye</option>
+         <option value="Other">Other</option>
 	</select>
 
 	<select name="size">
@@ -119,13 +139,11 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
 	<select name="fit">
 		<option value="Fit">Fit</option>
 		<option value="Regular">Regular</option>
-            <option value="Bootcut">Bootcut</option>
-            <option value="Skinny">Skinny</option>
-            <option value="Low-rise">Low-rise</option>
-            <option value="Flare">Flare</option>
-            <option value="Baggy">Baggy</option>
             <option value="Fitted">Fitted</option>
-            <option value="Shift">Shift</option>
+            <option value="Loose">Loose</option>
+            <option value="Long">Long</option>
+            <option value="Short">Short</option>
+            <option value="Low Cut">Low Cut</option>
 	</select>
 
 	<select name="price">
@@ -142,6 +160,7 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
         <option value="$81-$100">$81-$100</option>
         <option value="$100-$150">$100-$150</option>
         <option value="$150-$200">$150-$200</option>
+        <option value="More">More than $200</option>
 	</select>
 
 	<select name="rating">
@@ -151,18 +170,22 @@ $sql = "INSERT INTO users (id, type, color, pattern, size, fit, price)
         <option value="3">3</option>
         <option value="4">4</option>
         <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
 	</select>
+
+	<select name="worn">
+		<option value="Worn">Worn today</option>
+		<option value="Unworn">Not worn</option>
+	</select>
+
+	<p><input type="submit" value="Add New"/></p>
+
 
 </form>
 
 <?php
 echo '<table border="1">'."\n";
-$result = mysql_query("SELECT id, type, color, pattern, size, fit, price FROM users");
+$tablename= $_SESSION['tablename']; //call tablename from session
+$result = mysql_query("SELECT id, name, type, color, pattern, size, fit, price, worn FROM $tablename");
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
     echo(htmlentities($row[1]));
@@ -177,11 +200,24 @@ while ( $row = mysql_fetch_row($result) ) {
     echo("</td><td>\n");
 	echo(htmlentities($row[6]));
     echo("</td><td>\n");
+<<<<<<< HEAD
     echo('<a href="edit.php?id='.htmlentities($row[0]).'">Edit</a> / ');
     echo('<a href="delete.php?id='.htmlentities($row[0]).'">Delete</a>');
+=======
+    echo(htmlentities($row[7]));
+    echo("</td><td>\n");
+    echo(htmlentities($row[8]));
+    echo("</td><td>\n");
+    echo('<form method="post"><input type="hidden" ');
+    echo('name="id" value="'.$row[9].'">'."\n");
+    echo('<a href="edittrack.php?id='.htmlentities($row[10]).'">Edit</a> / ');
+    echo('<input type="submit" value="Delete" name="delete">');
+    echo("\n</form>\n");
+>>>>>>> e249e68808a8104a1e905e1573d7feb544766a8f
     echo("</td></tr>\n");
 }
-?>
+
+?></table>
 
 	<div>
         <br>
